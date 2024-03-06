@@ -27,7 +27,9 @@
 		<%
 			try{
 				Class.forName("oracle.jdbc.driver.OracleDriver");
+				
 				con = DriverManager.getConnection(url, username, password);
+				
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				
