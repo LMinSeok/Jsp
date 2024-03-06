@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="script/member.js"></script>
 </head>
 <body>
 	<h2>아이디 중복 체크</h2>
@@ -16,10 +17,10 @@
 			<script type="text/javascript">
 				opener.document.frm.userid.value = "";
 			</script>
-			<div style="">${userid }는 이미 사용중인 아이디입니다.</div>
+			<div style="">${userid }는이미 사용중인 아이디입니다.</div>
 		</c:if>
 		<c:if test="${result == -1 }">
-			<div style="color: red">${userid }는 사용가능한 아이디입니다.</div>
+			<div style="color: red">${userid }는사용가능한 아이디입니다.</div>
 			<input type="button" value="사용" class="cancel" onclick="idok()">
 		</c:if>
 	</form>
