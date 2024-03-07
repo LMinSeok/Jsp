@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.saeyan.dao.MemberDAO;
 
 @WebServlet("/login.do")
 public class LoginServlet extends HttpServlet {
@@ -21,7 +24,28 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String userid = request.getParameter("userid");
+		String pwd = request.getParameter("pwd");
+
+		MemberDAO mDao = MemberDAO.getInstance();
+		String url = null;
+
+		// -1 : 비밀번호x , 0: 아이디x, 1 : 로그인 성공
+		int result = mDao.userCheck(userid, pwd);
+
+		if (result == 1) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", userid);
+			request.setAttribute("message", "로그인 성공했습니다.");
+			url = "main.jsp";
+		} else if (result == 0) {
+			request.setAttribute("message", "존재하지 않는 회원입니다.");
+		} else if (result == -1) {
+			request.setAttribute("message", "비밀번호가 맞지 않습니다.");
+		}
+		request.getRequestDispatcher(url).forward(request, response);
 		doGet(request, response);
+
 	}
 
 }
