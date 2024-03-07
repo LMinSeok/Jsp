@@ -8,21 +8,19 @@
 <script type="text/javascript" src="script/member.js"></script>
 </head>
 <body>
-	<h2>회원 가입</h2>
-	'*' 표시 항목은 필수 입력 항목입니다.
+	<h2 align="center">회원 가입</h2>
+	<h4 align="center">'*' 표시 항목은 필수 입력 항목입니다.</h4>
 	<form action="join.do" method="post" name="frm">
-		<table>
+		<table align="center">
 			<tr>
 				<td>이름</td>
 				<td><input type="text" name="name" size="20">*</td>
 			</tr>
 			<tr>
 				<td>아이디</td>
-				<td>
-				<input type="text" name="userid" size="20" id="userid">*
-				<input type="hidden" name="reid" size="20"> 
-				<input type="button" value="중복 체크" onclick="idCheck()">
-				</td>
+				<td><input type="text" name="userid" size="20" id="userid">*
+					<input type="hidden" name="reid" size="20"> <input
+					type="button" value="중복 체크" onclick="idCheck()"></td>
 			</tr>
 			<tr>
 				<td>암 호</td>
@@ -42,16 +40,14 @@
 			</tr>
 			<tr>
 				<td>등급</td>
-				<td>
-				<input type="radio" name="admin" value="0"checked="checked"> 일반회원 
-				<input type="radio" name="admin"value="1"> 관리자
-				</td>
+				<td><input type="radio" name="admin" value="0"
+					checked="checked"> 일반회원 <input type="radio" name="admin"
+					value="1"> 관리자</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-				<input type="submit" value="확인"	onclick="return joinCheck()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-				<input type="reset" value="취소">
-				</td>
+				<td colspan="2" align="center"><input type="submit" value="확인"
+					onclick="return joinCheck()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="reset" value="취소"></td>
 			</tr>
 			<tr>
 				<td colspan="2">${message }</td>
