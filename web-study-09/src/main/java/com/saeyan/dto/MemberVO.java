@@ -1,5 +1,6 @@
 package com.saeyan.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,7 @@ import lombok.Setter;
 	admin number(1)
 );
  */
-
+@Data
 @Setter
 @Getter
 
