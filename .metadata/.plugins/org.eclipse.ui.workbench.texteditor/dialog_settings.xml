@@ -8,6 +8,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="produt"/>
+			<item value="prodct"/>
 			<item value="package unit01;"/>
 		</list>
 		<list key="replacehistory">
