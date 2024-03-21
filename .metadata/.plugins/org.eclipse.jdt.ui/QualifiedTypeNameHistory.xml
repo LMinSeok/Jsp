@@ -42,8 +42,10 @@
     <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="DAO.Order1Dao"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="order.dao.OrderDAO"/>
+    <fullyQualifiedTypeName name="order.dto.Order"/>
     <fullyQualifiedTypeName name="lombok.ToString"/>
 </qualifiedTypeNameHistroy>
