@@ -87,12 +87,10 @@ public class OrderDAO {
 
 			rs = pstmt.executeQuery();
 
-			
-
 			System.out.println("rs>>" + rs);
 			while (rs.next()) {
 				OrderVO vo = new OrderVO();
-				
+
 				vo.setOrderId(rs.getString("orderid"));
 				vo.setProduct(rs.getString("product"));
 				vo.setCustomerName(rs.getString("customerName"));
@@ -114,30 +112,61 @@ public class OrderDAO {
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 장바구니 삭제
-	
+
 	public int deleteSelectedOrders(List<String> orderIdList) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
 
-        try {
-            con = getConnection();
+		try {
+			con = getConnection();
 
-            String sql = "DELETE FROM product WHERE orderid = ?";
-            pstmt = con.prepareStatement(sql);
+			String sql = "DELETE FROM product WHERE orderid = ?";
+			pstmt = con.prepareStatement(sql);
 
-            for (String orderId : orderIdList) {
-            	System.out.println(orderId);
-                pstmt.setString(1, orderId);
-                result = pstmt.executeUpdate();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            close(con, pstmt);
-        }
+			for (String orderId : orderIdList) {
+				System.out.println(orderId);
+				pstmt.setString(1, orderId);
+				result = pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, pstmt);
+		}
 
-        return result;
-    }
+		return result;
+	}
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	public OrderVO selectOrderByNum(int num) {
+
+		OrderVO vo = new OrderVO();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from order where num = ?";
+
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				vo.setOrderId(rs.getString("orderid"));
+				vo.setProduct(rs.getString("product"));
+				vo.setCustomerName(rs.getString("customerName"));
+				vo.setOrderDate(rs.getTimestamp("orderDate"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setTotalamount(rs.getInt("totalamount"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return vo;
+	}
 
 }

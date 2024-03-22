@@ -43,7 +43,7 @@
 			<input type="button" value="상품삭제" onclick="confirmDelete()">
 
 			<input type="button" value="상품 결제하기"
-				onclick="location.href='OrderPay1.do'">
+				onclick="location.href='OrderListServlet?command=order_pay1&${order.num}'">
 		</div>
 	</form>
 
