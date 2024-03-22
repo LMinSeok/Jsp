@@ -1,3 +1,3 @@
-function open_win(url, name) {
-	window.open(url, name, "width=500, height=230");
+function open_win(url, orderid) {
+	window.open(url, orderid, "width=500, height=230");
 }

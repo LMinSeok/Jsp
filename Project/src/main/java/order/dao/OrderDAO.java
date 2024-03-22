@@ -69,9 +69,8 @@ public class OrderDAO {
 	}
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
 
-	
 	// 전체 데이터 DB에서 주문한 상품 가져오기
-	
+
 	public List<OrderVO> selectAllBoards() {
 		List<OrderVO> list = new ArrayList<>();
 		Connection con = null;
@@ -81,18 +80,19 @@ public class OrderDAO {
 		String sql = "select * from product";
 
 		try {
-			
+
 			con = getConnection();
-			
+
 			pstmt = con.prepareStatement(sql);
-			
+
 			rs = pstmt.executeQuery();
-			
-			OrderVO vo = new OrderVO();
+
 			
 
 			System.out.println("rs>>" + rs);
 			while (rs.next()) {
+				OrderVO vo = new OrderVO();
+				
 				vo.setOrderId(rs.getString("orderid"));
 				vo.setProduct(rs.getString("product"));
 				vo.setCustomerName(rs.getString("customerName"));
@@ -101,16 +101,43 @@ public class OrderDAO {
 				vo.setTotalamount(rs.getInt("totalamount"));
 
 				list.add(vo);
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(con, pstmt, rs);
 		}
-		
+
 		return list;
 	}
+
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	// 장바구니 삭제
+	
+	public int deleteSelectedOrders(List<String> orderIdList) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            con = getConnection();
+
+            String sql = "DELETE FROM product WHERE orderid = ?";
+            pstmt = con.prepareStatement(sql);
+
+            for (String orderId : orderIdList) {
+            	System.out.println(orderId);
+                pstmt.setString(1, orderId);
+                result = pstmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(con, pstmt);
+        }
+
+        return result;
+    }
 
 }

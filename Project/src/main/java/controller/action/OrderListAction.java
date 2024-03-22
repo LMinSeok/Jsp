@@ -21,7 +21,7 @@ public class OrderListAction implements Action {
 		OrderDAO ODao = OrderDAO.getInstance();
 		List<OrderVO> list = ODao.selectAllBoards();
 
-		System.out.println(list);
+		System.out.println("listㄱ밧>>"+list);
 		request.setAttribute("orderList", list);
 
 		request.getRequestDispatcher(url).forward(request, response);

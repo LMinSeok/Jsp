@@ -13,7 +13,6 @@
 	<div id="wrap" align="center">
 		<h1>주문 / 결제</h1>
 		<form name="frm" method="post" action="BoardServlet">
-			<input type="hidden" name="command" value="board_write">
 			<table>
 				<tr>
 					<th>성명</th>
@@ -42,7 +41,7 @@
 			</table>
 			<br> <br> 
 				<input type="submit" value="결제">
-				<input type="reset" value="이 전(장바구니)"onclick="location.href='OrderListServlet?command=order_list'">
+				<input type="reset" value="이 전(장바구니)"onclick="location.href='OrderList.do'">
 		</form>
 	</div>
 </body>

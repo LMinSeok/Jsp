@@ -19,8 +19,10 @@ public class ActionFactory {
 
 		if (command.equals("order_list")) {
 			action = new OrderListAction();
-		} else if (command.equals("order_pay")) {
-			action = (Action) new OrderPayAction();
+		} else if (command.equals("order_delete")) {
+			action = (Action) new OrderDeleteAction();
+		} else if (command.equals("order_pay1")) {
+//			action = (Action) new OrderPay1Action();
 		}
 
 		return action;
