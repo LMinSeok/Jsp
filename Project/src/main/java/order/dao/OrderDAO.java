@@ -73,21 +73,27 @@ public class OrderDAO {
 	// 전체 데이터 DB에서 주문한 상품 가져오기
 	
 	public List<OrderVO> selectAllBoards() {
-		List<OrderVO> list = new ArrayList();
+		List<OrderVO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from board order by num desc";
+		String sql = "select * from product";
 
 		try {
+			
 			con = getConnection();
+			
 			pstmt = con.prepareStatement(sql);
+			
 			rs = pstmt.executeQuery();
+			
+			OrderVO vo = new OrderVO();
+			
 
+			System.out.println("rs>>" + rs);
 			while (rs.next()) {
-				OrderVO vo = new OrderVO();
-				vo.setOrderId(rs.getInt("orderid"));
+				vo.setOrderId(rs.getString("orderid"));
 				vo.setProduct(rs.getString("product"));
 				vo.setCustomerName(rs.getString("customerName"));
 				vo.setOrderDate(rs.getTimestamp("orderDate"));
@@ -95,12 +101,16 @@ public class OrderDAO {
 				vo.setTotalamount(rs.getInt("totalamount"));
 
 				list.add(vo);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(con, pstmt, rs);
 		}
+		
 		return list;
 	}
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
 }
