@@ -14,10 +14,12 @@ import javax.sql.DataSource;
 import lombok.Getter;
 import lombok.Setter;
 import order.dto.OrderVO;
+import order.dto.UsersVO;
 
 @Setter
 @Getter
 public class OrderDAO {
+	
 
 	private static OrderDAO instance = new OrderDAO();
 
@@ -73,10 +75,11 @@ public class OrderDAO {
 
 	public List<OrderVO> selectAllBoards() {
 		List<OrderVO> list = new ArrayList<>();
-		Connection con = null;
+		Connection con =null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
+		
 		String sql = "select * from product";
 
 		try {
@@ -89,14 +92,14 @@ public class OrderDAO {
 
 			System.out.println("rs>>" + rs);
 			while (rs.next()) {
+				
 				OrderVO vo = new OrderVO();
-
+				
 				vo.setOrderId(rs.getString("orderid"));
 				vo.setProduct(rs.getString("product"));
 				vo.setCustomerName(rs.getString("customerName"));
 				vo.setOrderDate(rs.getTimestamp("orderDate"));
 				vo.setPrice(rs.getInt("price"));
-				vo.setTotalamount(rs.getInt("totalamount"));
 
 				list.add(vo);
 
@@ -121,7 +124,7 @@ public class OrderDAO {
 		try {
 			con = getConnection();
 
-			String sql = "DELETE FROM product WHERE orderid = ?";
+			String sql = "DELETE FROM product WHERE orderId = ?";
 			pstmt = con.prepareStatement(sql);
 
 			for (String orderId : orderIdList) {
@@ -137,15 +140,16 @@ public class OrderDAO {
 
 		return result;
 	}
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-	public OrderVO selectOrderByNum(int num) {
 
-		OrderVO vo = new OrderVO();
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	public UsersVO selectOrderByNum(int num) {
+
+		UsersVO vo = new UsersVO();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from order where num = ?";
+		String sql = "select * from users where num = ?";
 
 		try {
 			con = getConnection();
@@ -154,12 +158,15 @@ public class OrderDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				vo.setOrderId(rs.getString("orderid"));
-				vo.setProduct(rs.getString("product"));
-				vo.setCustomerName(rs.getString("customerName"));
-				vo.setOrderDate(rs.getTimestamp("orderDate"));
-				vo.setPrice(rs.getInt("price"));
-				vo.setTotalamount(rs.getInt("totalamount"));
+				
+				vo.setNum(rs.getInt("num"));
+				vo.setId(rs.getString("id"));
+				vo.setPass(rs.getString("pass"));
+				vo.setUsername(rs.getString("username"));
+				vo.setEmail(rs.getString("email"));
+				vo.setAddr(rs.getString("addr"));
+				vo.setAddr2(rs.getString("addr2"));
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

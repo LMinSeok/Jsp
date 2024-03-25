@@ -115,7 +115,11 @@
 				</Context>
 
 
-			<Context docBase="C:\JAVA\work\Jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\web-study-11" path="/web-study-11" reloadable="true" source="org.eclipse.jst.jee.server:web-study-11"/></Host>
+				<Context docBase="C:\JAVA\work\Jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Product" path="/Product" reloadable="true" source="org.eclipse.jst.jee.server:Product">
+					<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/myoracle" password="9906" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.0.100:1521:xe" username="hades"/>
+
+				</Context>
+			</Host>
 		</Engine>
 	</Service>
 </Server>
